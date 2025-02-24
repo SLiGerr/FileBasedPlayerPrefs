@@ -143,7 +143,7 @@ public static class FBPP
 
     public static void DeleteAll()
     {
-        WriteToSaveFile(JsonUtility.ToJson(new FBPPFileModel()));
+        WriteToSaveFile(JsonUtility.ToJson(new FBPPFileModel(), true));
         _latestData = new FBPPFileModel();
     }
 
@@ -204,7 +204,7 @@ public static class FBPP
     {
         CheckForInit();
         CheckSaveFileExists();
-        return JsonUtility.ToJson(GetSaveFile());
+        return JsonUtility.ToJson(GetSaveFile(), true);
     }
 
     private static object GetDataFromSaveFile(string key, object defaultValue)
@@ -234,7 +234,7 @@ public static class FBPP
     {
         if (_config.AutoSaveData || manualSave)
         {
-            WriteToSaveFile(JsonUtility.ToJson(GetSaveFile()));
+            WriteToSaveFile(JsonUtility.ToJson(GetSaveFile(), true));
         }
     }
     private static void WriteToSaveFile(string data)
@@ -268,7 +268,7 @@ public static class FBPP
 
     private static void CreateNewSaveFile()
     {
-        WriteToSaveFile(JsonUtility.ToJson(new FBPPFileModel()));
+        WriteToSaveFile(JsonUtility.ToJson(new FBPPFileModel(), true));
     }
 
     private static string DataScrambler(string data)
